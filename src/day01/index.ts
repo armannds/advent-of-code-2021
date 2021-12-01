@@ -1,10 +1,8 @@
 export class Day01 {
   part1(inputs: number[]): number {
-    let increments = 0;
-    for (let index = 1; index < inputs.length; index++) {
-      inputs[index] > inputs[index - 1] && increments++;
-    }
-    return increments;
+    return inputs
+      .slice(1)
+      .reduce((a, x, i) => a + (inputs[i] < x ? 1 : 0), 0);
   }
 
   part2(inputs: number[]): number {
@@ -17,9 +15,5 @@ export class Day01 {
     }
 
     return increments;
-  }
-
-  private getNumbers(inputs: string[]): number[] {
-    return inputs.map(n => parseInt(n));
   }
 }
