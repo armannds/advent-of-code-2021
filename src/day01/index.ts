@@ -21,5 +21,5 @@ export function part2(inputs: string[]): number {
 }
 
 function getNumbers(inputs: string[]): number[] {
-  return inputs.map((n) => parseInt(n));
+  return inputs.map(n => parseInt(n));
 }
