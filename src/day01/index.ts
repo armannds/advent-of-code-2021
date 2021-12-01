@@ -1,19 +1,17 @@
 export class Day01 {
-  part1(inputs: string[]): number {
+  part1(inputs: number[]): number {
     let increments = 0;
-    const numbers = this.getNumbers(inputs);
-    for (let index = 1; index < numbers.length; index++) {
-      numbers[index] > numbers[index - 1] && increments++;
+    for (let index = 1; index < inputs.length; index++) {
+      inputs[index] > inputs[index - 1] && increments++;
     }
     return increments;
   }
 
-  part2(inputs: string[]): number {
+  part2(inputs: number[]): number {
     let increments = 0;
-    const numbers = this.getNumbers(inputs);
     let previousValue = 0;
-    for (let index = 2; index < numbers.length; index++) {
-      const value = numbers[index - 2] + numbers[index - 1] + numbers[index];
+    for (let index = 2; index < inputs.length; index++) {
+      const value = inputs[index - 2] + inputs[index - 1] + inputs[index];
       previousValue != 0 && value > previousValue && increments++;
       previousValue = value;
     }
