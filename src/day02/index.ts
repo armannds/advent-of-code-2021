@@ -7,18 +7,22 @@ export class Day02 {
       horizontal: 0,
     };
 
-    for (let index = 0; index < inputs.length; index++) {
-      const readings = inputs[index].split(' ');
-      if (readings[0] === 'forward') {
-        position.horizontal += parseInt(readings[1]);
-      }
-      if (readings[0] === 'down') {
-        position.vertical += parseInt(readings[1]);
-      }
-      if (readings[0] === 'up') {
-        position.vertical -= parseInt(readings[1]);
-      }
-    }
+    inputs
+      .map(s => {
+        const readings = s.split(' ');
+        return [readings[0], parseInt(readings[1])] as [string, number];
+      })
+      .forEach(([direction, value]) => {
+        if (direction === 'forward') {
+          position.horizontal += value;
+        }
+        if (direction === 'down') {
+          position.vertical += value;
+        }
+        if (direction === 'up') {
+          position.vertical -= value;
+        }
+      });
 
     return position.vertical * position.horizontal;
   }
@@ -30,22 +34,23 @@ export class Day02 {
     };
     let aim = 0;
 
-    for (let index = 0; index < inputs.length; index++) {
-      const readings = inputs[index].split(' ');
-      if (readings[0] === 'forward') {
-        const value = parseInt(readings[1]);
-        position.horizontal += value;
-        position.vertical += aim * value;
-      }
-      if (readings[0] === 'down') {
-        const value = parseInt(readings[1]);
-        aim += value;
-      }
-      if (readings[0] === 'up') {
-        const value = parseInt(readings[1]);
-        aim -= value;
-      }
-    }
+    inputs
+      .map(s => {
+        const readings = s.split(' ');
+        return [readings[0], parseInt(readings[1])] as [string, number];
+      })
+      .forEach(([direction, value]) => {
+        if (direction === 'forward') {
+          position.horizontal += value;
+          position.vertical += aim * value;
+        }
+        if (direction === 'down') {
+          aim += value;
+        }
+        if (direction === 'up') {
+          aim -= value;
+        }
+      });
 
     return position.vertical * position.horizontal;
   }
