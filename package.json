@@ -5,12 +5,11 @@
   "main": "index.js",
   "scripts": {
     "serve": "node dist/main.js",
-    "start": "npm run build-ts && npm run serve",
+    "start": "npm run build && npm run serve",
     "build-ts": "tsc",
-    "build": "npm run build-ts && npm run lint && npm run copy-static-assets",
+    "build": "npm run build-ts && npm run lint",
     "test": "jest --forceExit --detectOpenHandles --verbose",
-    "lint": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet --fix",
-    "copy-static-assets": "ts-node copyAssets.ts"
+    "lint": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet --fix"
   },
   "repository": {
     "type": "git",
