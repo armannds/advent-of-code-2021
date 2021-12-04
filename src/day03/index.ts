@@ -91,9 +91,6 @@ export class Day03 {
       }
     }
 
-    console.log(`ox: ${binariesCommon.length}`);
-    console.log(`co2: ${binariesLeast.length}`);
-
     return parseInt(binariesCommon[0], 2) * parseInt(binariesLeast[0], 2);
   }
 }
