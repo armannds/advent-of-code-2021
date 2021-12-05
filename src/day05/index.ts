@@ -2,18 +2,7 @@ import { Coordinate } from './coordinate';
 
 export class Day05 {
   part1(input: string[]): number {
-    const coordinates = input.map(row => {
-      const points = row
-        .split(' -> ')
-        .map(p => p.split(',').map(p => parseInt(p)));
-      const coordinate: Coordinate = {
-        fromX: points[0][0],
-        fromY: points[0][1],
-        endX: points[1][0],
-        endY: points[1][1],
-      };
-      return coordinate;
-    });
+    const coordinates = this.getCoordinates(input);
 
     const map: number[][] = [];
     for (const coord of coordinates) {
@@ -22,24 +11,15 @@ export class Day05 {
         const end = Math.max(coord.fromX, coord.endX);
 
         for (let x = start; x <= end; x++) {
-          if (!map[x]) {
-            map[x] = [];
-          }
-          map[x][coord.endY] = !map[x][coord.endY] ? 1 : map[x][coord.endY] + 1;
+          this.incrementMap(x, coord.fromY, map);
         }
       }
 
       if (coord.fromX === coord.endX) {
         const start = Math.min(coord.fromY, coord.endY);
         const end = Math.max(coord.fromY, coord.endY);
-
         for (let y = start; y <= end; y++) {
-          if (!map[coord.fromX]) {
-            map[coord.fromX] = [];
-          }
-          map[coord.fromX][y] = !map[coord.fromX][y]
-            ? 1
-            : map[coord.fromX][y] + 1;
+          this.incrementMap(coord.fromX, y, map);
         }
       }
     }
@@ -48,18 +28,7 @@ export class Day05 {
   }
 
   part2(input: string[]): number {
-    const coordinates = input.map(row => {
-      const points = row
-        .split(' -> ')
-        .map(p => p.split(',').map(p => parseInt(p)));
-      const coordinate: Coordinate = {
-        fromX: points[0][0],
-        fromY: points[0][1],
-        endX: points[1][0],
-        endY: points[1][1],
-      };
-      return coordinate;
-    });
+    const coordinates = this.getCoordinates(input);
 
     const map: number[][] = [];
     for (const coord of coordinates) {
@@ -117,8 +86,22 @@ export class Day05 {
     return map.flat().filter(m => m > 1).length;
   }
 
-  private incrementMap(x: number, y: number, map: number[][])
-  {
+  private getCoordinates(input: string[]) : Coordinate[] {
+    return input.map(row => {
+      const points = row
+        .split(' -> ')
+        .map(p => p.split(',').map(p => parseInt(p)));
+      const coordinate: Coordinate = {
+        fromX: points[0][0],
+        fromY: points[0][1],
+        endX: points[1][0],
+        endY: points[1][1],
+      };
+      return coordinate;
+    });
+  }
+
+  private incrementMap(x: number, y: number, map: number[][]) {
     if (!map[x]) {
       map[x] = [];
     }
