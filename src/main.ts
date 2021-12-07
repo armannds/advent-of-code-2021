@@ -4,6 +4,8 @@ import { Day02 } from './day02';
 import { Day03 } from './day03';
 import { Day04 } from './day04';
 import { Day05 } from './day05';
+import { Day06 } from './day06';
+import { Day07 } from './day07';
 
 
 console.log('-------- Solutions --------');
@@ -46,3 +48,19 @@ const input5 = readStringList('./inputs/input05.txt');
 const day05 = new Day05();
 console.log(`Part 1: ${day05.part1(input5)}`);
 console.log(`Part 2: ${day05.part2(input5)}`);
+
+console.log('\n');
+console.log('-------- Day 6 --------');
+
+const input6 = read('./inputs/input06.txt');
+const day06 = new Day06();
+console.log(`Part 1: ${day06.part1(input6)}`);
+console.log(`Part 2: ${day06.part2(input6)}`);
+
+console.log('\n');
+console.log('-------- Day 7 --------');
+
+const input7 = read('./inputs/input07.txt');
+const day07 = new Day07();
+console.log(`Part 1: ${day07.part1(input7)}`);
+console.log(`Part 2: ${day07.part2(input7)}`);
